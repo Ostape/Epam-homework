@@ -1,5 +1,5 @@
 # Compiled class file
-*.class
+#.class
 out/
 
 # Log file
@@ -28,3 +28,7 @@ git.properties
 
 #IDEA Project Files
 .idea/
+
+#except
+!/Exc2/root/*
+
