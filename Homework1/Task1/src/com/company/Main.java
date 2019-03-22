@@ -9,17 +9,24 @@ public class Main {
         System.out.println("Input number in binary format");
         String input = scan.next();
         task1(input);
-        task2(-1);
+        System.out.println("Input number to opposite one: ");
+        task2(scan.nextInt());
         task3();
-        task4(30,18);
-        task5(3, 34);
-
-
+        System.out.println("Input a, b: ");
+        task4(scan.nextInt(),scan.nextInt());
+        System.out.println("Input number and position of bit: ");
+        task5(scan.nextInt(), scan.nextInt());
     }
 
 
     private static void task1(String input){
-        System.out.println("Binary to decimal: "+"\"" + input + "\"" +" -> " + Integer.parseInt(input,2));
+        int num=0;
+        for (int i = 0; i < input.length(); i++){
+            if(input.charAt(input.length()-i-1)=='1'){
+               num+= 1 << i;
+            }
+        }
+        System.out.println(num);
     }
 
     private static void task2(int number){
