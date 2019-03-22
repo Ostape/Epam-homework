@@ -18,7 +18,6 @@ public class Main {
         task5(scan.nextInt(), scan.nextInt());
     }
 
-
     private static void task1(String input){
         int num=0;
         for (int i = 0; i < input.length(); i++){
@@ -69,10 +68,10 @@ public class Main {
     }
 
     private static void task4(int a, int b){
-        System.out.println("GCD: " + gcd(a,b));
+        System.out.println("GCD: " + myGcd(a,b));
     }
 
-    private static void task5(int pos, int num){
+    private static void task5(int num, int pos){
         int res = 1 << pos;
         System.out.println("Initial number: " + Integer.toBinaryString(num));
         System.out.println("Changed number: " + Integer.toBinaryString(res^num));
@@ -116,5 +115,42 @@ public class Main {
         while (v != 0);
 
         return u << shift;
+    }
+
+    private static int myGcd(int m, int n){
+         /*
+            Алгоритм
+            1. НОД(0, n) = n; НОД(m, 0) = m;
+            2. Если m, n чётные, тогда НОД(m, n) = 2 * НОД(m / 2, n / 2).
+            3. Если m чётное, тогда НОД(m, n) = НОД(m / 2, n).
+            4. Если n чётное, тогда НОД(m, n) = НОД(m, n / 2).
+            5. Если m, n нечётные и m > n, тогда НОД(m, n) = НОД(n, m - n).
+            6. Если m, n нечётные и m < n, тогда НОД(m, n) = НОД(n, n - m).
+            7. Если m = n, тогда НОД(m, n) = m;
+        */
+         if (n == 0 || m == 0){
+             return m | n;
+         }
+         if (m == n){
+             return m;
+         }
+
+         if ((n & 1) == 0 && (m & 1) == 0){
+             return myGcd(m >> 1, n >> 1) << 1;
+         }
+         else if ((m&1) == 0){
+             return myGcd(m >> 1, n);
+         }
+         else if ((n&1) == 0){
+             return myGcd(m, n >> 1);
+         }
+         else {
+             if (m > n){
+                 return myGcd(n, m - n);
+             }
+             else {
+                 return myGcd(n, n-m);
+             }
+         }
     }
 }
