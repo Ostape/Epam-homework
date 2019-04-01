@@ -1,0 +1,10 @@
+1) javac -cp ./src/main/java ./src/main/java/com/company/*.java -d ./o
+ut/ -classpath ./libs/*.jar
+
+2) cd ./out
+ jar xf ../libs/*.jar
+
+3) cd ../
+jar cvfm Main.jar ./src/main/resources/META-INF/MANIFEST.MF -C out/ .
+
+4) java -jar ./Main.jar
